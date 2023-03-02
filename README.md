@@ -19,7 +19,7 @@ F1=0.9886016451233842
 ACC=0.9993195417780303
 ```
 
-The algorithm achieves an F1-Score of 98.86\% on the HDFS data set. This exceeds the detection performance achieved by [n-gram-based detection](https://github.com/ait-aecid/stide) (F1-Score is 95.14\%) as well as many deep learning approaches. The following figure shows that most anomalous test sequences (lower half of the plot) have a high distance to the training sequences, while most normal test sequences (upper half of the plot) have a low distance. The vertical dashed lines indicates the threshold used for classification. Sequences detected as anomalous due to event types that did not occur in the training data receive a distance of 1.
+The algorithm achieves an F1-Score of 98.86\% on the HDFS data set. This exceeds the detection performance achieved by [n-gram-based detection](https://github.com/ait-aecid/stide) (F1-Score is 95.14\%) as well as many deep learning approaches. The following figure shows that most anomalous test sequences (lower half of the plot) have a high distance to the training sequences, while most normal test sequences (upper half of the plot) have a low distance. Note that the vertical axis that shows the numer of sequences for each class is scaled logarithmically. The vertical dashed line indicates the threshold used for classification; sequences on the left side of the line are predicted as normal, while sequences on the right side of the line are predicted as anomalous. Sequences involving event types that did not occur in the training data receive a distance of 1 and are thus always predicted as anomalous.
 
 <p align="center"><img src="https://github.com/ait-aecid/count-vector-clustering/blob/master/plot.png" width=100% height=100%></p>
 
