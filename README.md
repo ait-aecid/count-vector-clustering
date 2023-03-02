@@ -1,6 +1,6 @@
 # count-vector-clustering
 
-The algorithm in this repository evaluates the semi-supervised count-vector-clustering approach described in [1] on the HDFS log data set [2]. In short, the approach creates count vectors for each event sequence in the training data set and predicts counts vectors of new sequences from the test data set as anomalous when they are not similar enough to any of the sequences known to be normal, where the similarity metric is based on the l1-norm. In addition, all new sequences that contain event types not seen during training are predicted to be anomalous.
+The algorithm in this repository evaluates the semi-supervised count-vector-clustering approach described in [1] on the HDFS log data set [2]. In short, the approach creates count vectors for each event sequence in the training data set and predicts counts vectors of new sequences from the test data set as anomalous when they are not similar enough to any of the training sequences, where the similarity metric is based on the l1-norm. In addition, all new sequences that contain event types not seen during training are predicted to be anomalous.
 
 Run the algorithm using the following command:
 
