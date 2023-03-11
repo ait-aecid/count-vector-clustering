@@ -5,14 +5,14 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("--data_dir", default="data/hdfs_wuyifan18/", help="path to input files", type=str, choices=['data/hdfs_wuyifan18/', 'data/hdfs_loglizer/'])
 parser.add_argument("--threshold", default=0.14, help="similarity threshold used for clustering", type=float) 
-parser.add_argument("--normalize", default=True, help="if True, count vectors are normalized before clustering", type=bool)
-parser.add_argument("--idf", default=False, help="if True, event types are weighted higher if they occur in fewer sequences", type=bool)
+parser.add_argument("--normalize", default="True", help="if True, count vectors are normalized before clustering", type=str, choices=['True', 'False'])
+parser.add_argument("--idf", default="False", help="if True, event types are weighted higher if they occur in fewer sequences", type=str, choices=['True', 'False'])
 
 params = vars(parser.parse_args())
 data_dir = params["data_dir"]
 threshold = params["threshold"]
-normalize = params["normalize"]
-idf = params["idf"]
+normalize = params["normalize"] == 'True'
+idf = params["idf"] == 'True'
 
 train_vectors = []
 known_event_types = set()
