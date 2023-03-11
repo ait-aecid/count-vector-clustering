@@ -1,8 +1,18 @@
 import math
+import argparse
 
-threshold = 0.14 # Similarity threshold used for clustering
-normalize = True # If True, count vectors are normalized before clustering
-idf = False # If True, event types are weighted higher if they occur in fewer sequences
+parser = argparse.ArgumentParser()
+
+parser.add_argument("--data_dir", default="data/hdfs_wuyifan18/", help="path to input files", type=str, choices=['data/hdfs_wuyifan18/', 'data/hdfs_loglizer/'])
+parser.add_argument("--threshold", default=0.14, help="similarity threshold used for clustering", type=float) 
+parser.add_argument("--normalize", default=True, help="if True, count vectors are normalized before clustering", type=bool)
+parser.add_argument("--idf", default=False, help="if True, event types are weighted higher if they occur in fewer sequences", type=bool)
+
+params = vars(parser.parse_args())
+data_dir = params["data_dir"]
+threshold = params["threshold"]
+normalize = params["normalize"]
+idf = params["idf"]
 
 train_vectors = []
 known_event_types = set()
@@ -10,7 +20,7 @@ idf_weights = {}
 N = 0
 
 # Learn all unique count vectors from training file
-with open('data/hdfs_train') as f:
+with open(data_dir + 'hdfs_train') as f:
     cnt = 0
     for line in f:
         cnt += 1
@@ -96,7 +106,7 @@ tn = 0
 fp = 0
 
 # Run detection on abnormal data
-with open('data/hdfs_test_abnormal') as f:
+with open(data_dir + 'hdfs_test_abnormal') as f:
     for line in f:
         if detect_anomalies(line) is True:
             tp += 1
@@ -104,7 +114,7 @@ with open('data/hdfs_test_abnormal') as f:
             fn += 1
 
 # Run detection on normal data
-with open('data/hdfs_test_normal') as f:
+with open(data_dir + 'hdfs_test_normal') as f:
     for line in f:
         if detect_anomalies(line) is True:
             fp += 1

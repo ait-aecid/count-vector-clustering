@@ -23,7 +23,13 @@ The algorithm achieves an F1-Score of 98.86\% on the HDFS data set. This exceeds
 
 <p align="center"><img src="https://github.com/ait-aecid/count-vector-clustering/blob/master/plot.png" width=100% height=100%></p>
 
-You can specify the threshold for clustering as well as changing normalization and weighting at the beginning of the python script. When count vectors are not normalized, we achieved a slightly lower F1-Score of 98.85\% using a threshold of 0.11. IDF weighting does not seem to improve the results any further.
+Feel free to change the algorithm parameters (see `python3 count_vector_clustering.py --help`). We also tested the approach on the HDFS log data set used in the [deep-loglizer](https://github.com/logpai/deep-loglizer), where we achieve an F1-Score of 98.77\%. Use the following command to run the script on that data set (note that the threshold is set for best detection performance).
+
+```
+ubuntu@user-1:~/count-vector-clustering$ python3 count_vector_clustering.py --data_dir "data/hdfs_loglizer/" --threshold 0.03
+```
+
+If you use any of the scripts provided in this repository, please cite the following publication:
 
 [1] Landauer M., Skopik F., Höld G., Wurzenberger M. (2022): [A User and Entity Behavior Analytics Log Data Set for Anomaly Detection in Cloud Computing.](https://doi.org/10.1109/BigData55660.2022.10020672) 2022 IEEE International Conference on Big Data - 6th International Workshop on Big Data Analytics for Cyber Intelligence and Defense (BDA4CID 2022), December 17-20, 2022, Osaka, Japan. IEEE. \[[PDF](https://www.skopik.at/ait/2022_bigdata.pdf)\]
 
