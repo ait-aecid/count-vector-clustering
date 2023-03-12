@@ -45,6 +45,8 @@ with open(data_dir + 'hdfs_train') as f:
             train_vectors.append(train_vector)
     # N stores the total number of sequences
     N = cnt
+    for event_type in idf_weights:
+        idf_weights[event_type] = math.log10((1 + N) / len(idf_weights[event_type]))
 
 #print(train_vectors)
 
@@ -70,7 +72,7 @@ def detect_anomalies(line):
         for event_type in set(list(train_vector.keys()) + list(test_vector.keys())):
             idf_fact = 1
             if idf:
-                idf_fact = math.log10((1 + N) / len(idf_weights[event_type]))
+                idf_fact = idf_weights[event_type]
             norm_sum_train = 1
             norm_sum_test = 1
             # Sum up the l1 norm and the highest possible distance for normalization
